@@ -121,6 +121,7 @@ export function FixturesTable({
                 <TableCell>
                   <div className="flex items-center gap-2">
                     <ClubBadge
+                      opponent={f.opponent}
                       abbreviation={f.opponent_abbreviation ?? "?"}
                       primary={f.opponent_primary_colour ?? "#666"}
                       secondary={f.opponent_secondary_colour ?? "#fff"}

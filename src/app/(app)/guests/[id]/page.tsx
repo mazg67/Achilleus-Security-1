@@ -64,6 +64,7 @@ export default async function GuestProfilePage({
                 <div className="flex items-center gap-2">
                   <IpswichBadge size={32} />
                   <ClubBadge
+                    opponent={fixture.opponent}
                     abbreviation={fixture.opponent_abbreviation ?? "?"}
                     primary={fixture.opponent_primary_colour ?? "#666"}
                     secondary={fixture.opponent_secondary_colour ?? "#fff"}

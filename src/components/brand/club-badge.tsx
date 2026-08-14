@@ -1,16 +1,35 @@
 import Image from "next/image";
+import { getClubCrestPath } from "@/lib/club-crests";
 
 export function ClubBadge({
+  opponent,
   abbreviation,
   primary,
   secondary = "#FFFFFF",
   size = 44,
 }: {
+  opponent?: string;
   abbreviation: string;
   primary: string;
   secondary?: string;
   size?: number;
 }) {
+  const crest = opponent ? getClubCrestPath(opponent) : null;
+
+  if (crest) {
+    return (
+      <div className="shrink-0 flex items-center justify-center" style={{ width: size, height: size }}>
+        <Image
+          src={crest}
+          alt={opponent ?? "Club crest"}
+          width={500}
+          height={500}
+          style={{ width: "auto", height: "100%", maxWidth: "100%", objectFit: "contain" }}
+        />
+      </div>
+    );
+  }
+
   return (
     <div
       className="rounded-full flex items-center justify-center font-heading shrink-0"

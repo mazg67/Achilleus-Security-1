@@ -26,6 +26,7 @@ export default async function FixtureDetailPage({
           <IpswichBadge size={48} />
           <span className="text-sm font-semibold text-muted-foreground">vs</span>
           <ClubBadge
+            opponent={fixture.opponent}
             abbreviation={fixture.opponent_abbreviation ?? "?"}
             primary={fixture.opponent_primary_colour ?? "#666"}
             secondary={fixture.opponent_secondary_colour ?? "#fff"}
