@@ -29,9 +29,10 @@ export function mapMatchStatus(status: string): "upcoming" | "today" | "complete
 export function normaliseClubName(name: string): string {
   return name
     .toLowerCase()
-    .replace(/\b(fc|afc|cf)\b/g, "")
     .replace(/&/g, "and")
+    // Strip punctuation first so "F.C" collapses to "fc" before the word-boundary check below.
     .replace(/[^a-z0-9\s]/g, "")
+    .replace(/\b(fc|afc|cf)\b/g, "")
     .replace(/\s+/g, " ")
     .trim();
 }
