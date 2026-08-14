@@ -1,5 +1,4 @@
-import { View, Text, StyleSheet } from "@react-pdf/renderer";
-import { PdfLogoMark, PdfClubBadge } from "@/lib/pdf/pdf-brand";
+import { View, Text, Image, StyleSheet } from "@react-pdf/renderer";
 import { formatUKDate, formatKickoff, formatDateTimeStamp } from "@/lib/format";
 import type { Fixture } from "@/lib/database.types";
 
@@ -81,15 +80,23 @@ export const sharedStyles = StyleSheet.create({
   footerMeta: { fontSize: 8, color: "#666" },
 });
 
-export function PdfHeader({ fixture, title }: { fixture: Fixture; title: string }) {
+export function PdfHeader({
+  fixture,
+  title,
+  origin,
+}: {
+  fixture: Fixture;
+  title: string;
+  origin: string;
+}) {
   return (
     <View fixed>
       <View style={sharedStyles.headerRow}>
-        <PdfLogoMark size={38} />
+        <Image src={`${origin}/brand/achilleus-report-logo.png`} style={{ width: 38, height: 42 }} />
         <View style={sharedStyles.headerCentre}>
           <Text style={sharedStyles.headerTitle}>{title}</Text>
         </View>
-        <PdfClubBadge abbreviation="ITFC" primary="#0057B8" secondary="#FFFFFF" size={38} />
+        <Image src={`${origin}/brand/ipswich-crest.png`} style={{ width: 34, height: 42 }} />
       </View>
       <View style={sharedStyles.redBar} />
       <Text style={sharedStyles.matchLine}>

@@ -8,7 +8,7 @@ import { GuestListDocument } from "@/lib/pdf/GuestListDocument";
 import { CateringBriefDocument } from "@/lib/pdf/CateringBriefDocument";
 
 export async function GET(
-  _req: NextRequest,
+  req: NextRequest,
   { params }: { params: Promise<{ id: string; type: string }> },
 ) {
   const user = await getCurrentUser();
@@ -17,12 +17,13 @@ export async function GET(
   const { id, type } = await params;
   const detail = await getFixtureDetail(id);
   const generatedAt = new Date();
+  const origin = new URL(req.url).origin;
 
   const doc =
     type === "catering-brief" ? (
-      <CateringBriefDocument detail={detail} generatedAt={generatedAt} />
+      <CateringBriefDocument detail={detail} generatedAt={generatedAt} origin={origin} />
     ) : type === "guest-list" ? (
-      <GuestListDocument detail={detail} generatedAt={generatedAt} />
+      <GuestListDocument detail={detail} generatedAt={generatedAt} origin={origin} />
     ) : null;
 
   if (!doc) return new NextResponse("Unknown report type", { status: 404 });

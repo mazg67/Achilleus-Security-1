@@ -42,9 +42,11 @@ const FULL_COLS = [
 export function CateringBriefDocument({
   detail,
   generatedAt,
+  origin,
 }: {
   detail: FixtureDetail;
   generatedAt: Date;
+  origin: string;
 }) {
   const { fixture, settings, seats, menu } = detail;
   const guestSeats = seats.filter((s) => s.guest);
@@ -55,7 +57,7 @@ export function CateringBriefDocument({
   return (
     <Document title={`Hospitality & Catering Brief - vs ${fixture.opponent}`}>
       <Page size="A4" style={sharedStyles.page}>
-        <PdfHeader fixture={fixture} title="HOSPITALITY & CATERING BRIEF" />
+        <PdfHeader fixture={fixture} title="HOSPITALITY & CATERING BRIEF" origin={origin} />
 
         <View style={styles.summaryBox}>
           <Summary label="Total Guests" value={String(guestSeats.length)} />

@@ -14,16 +14,18 @@ const COLS = [
 export function GuestListDocument({
   detail,
   generatedAt,
+  origin,
 }: {
   detail: FixtureDetail;
   generatedAt: Date;
+  origin: string;
 }) {
   const { fixture, settings, seats } = detail;
 
   return (
     <Document title={`Match Day Guest List - vs ${fixture.opponent}`}>
       <Page size="A4" style={sharedStyles.page}>
-        <PdfHeader fixture={fixture} title="ACHILLEUS SECURITY HOSPITALITY SUITE" />
+        <PdfHeader fixture={fixture} title="ACHILLEUS SECURITY HOSPITALITY SUITE" origin={origin} />
 
         <Text style={sharedStyles.sectionTitle}>
           Match Day Guest List — {settings.suite_name}

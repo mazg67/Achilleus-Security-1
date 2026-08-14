@@ -1,3 +1,5 @@
+import Image from "next/image";
+
 export function ClubBadge({
   abbreviation,
   primary,
@@ -27,5 +29,15 @@ export function ClubBadge({
 }
 
 export function IpswichBadge({ size = 44 }: { size?: number }) {
-  return <ClubBadge abbreviation="ITFC" primary="#0057B8" secondary="#FFFFFF" size={size} />;
+  return (
+    <div className="shrink-0 flex items-center justify-center" style={{ width: size, height: size }}>
+      <Image
+        src="/brand/ipswich-crest.png"
+        alt="Ipswich Town FC"
+        width={1774}
+        height={2178}
+        style={{ width: "auto", height: "100%", maxWidth: "100%", objectFit: "contain" }}
+      />
+    </div>
+  );
 }
