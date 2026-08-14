@@ -1,7 +1,7 @@
 import "server-only";
 import { createAdminClient } from "@/lib/supabase/admin";
 import { fetchIpswichHomeFixtures, mapMatchStatus, clubNamesMatch } from "@/lib/football-data";
-import type { Fixture } from "@/lib/database.types";
+import type { Database, Fixture } from "@/lib/database.types";
 
 export interface SyncResult {
   matched: number;
@@ -62,7 +62,11 @@ export async function syncFixturesFromFootballData(season: number): Promise<Sync
     // overwriting it with midnight.
     const kickoff_time = match.status === "TIMED" ? match.utcDate.slice(11, 16) : null;
 
-    const update: Record<string, unknown> = { date, status, football_data_fixture_id: match.id };
+    const update: Database["public"]["Tables"]["fixtures"]["Update"] = {
+      date,
+      status,
+      football_data_fixture_id: match.id,
+    };
     if (kickoff_time) update.kickoff_time = kickoff_time;
 
     const changed =
