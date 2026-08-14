@@ -1,9 +1,9 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { cn } from "@/lib/utils";
-import { LogoLockup } from "@/components/brand/logo";
 import { visibleNavItems } from "@/components/layout/nav-items";
 import type { UserRole } from "@/lib/database.types";
 
@@ -15,7 +15,14 @@ export function Sidebar({ role }: { role: UserRole }) {
     <aside className="hidden md:flex md:w-64 md:flex-col md:fixed md:inset-y-0 bg-brand-black">
       <div className="flex flex-col flex-1 min-h-0">
         <div className="px-5 pt-6 pb-5 border-b border-white/10">
-          <LogoLockup size={44} variant="dark" />
+          <Image
+            src="/brand/logo-horizontal-yellow.png"
+            alt="Achilleus Security"
+            width={1873}
+            height={586}
+            priority
+            className="w-full h-auto"
+          />
         </div>
         <nav className="flex-1 px-3 py-4 space-y-1">
           {items.map((item) => {

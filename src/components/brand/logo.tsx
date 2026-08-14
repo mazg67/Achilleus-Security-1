@@ -63,27 +63,6 @@ export function LogoMark({ size = 40, className }: { size?: number; className?: 
   );
 }
 
-export function LogoLockup({
-  size = 40,
-  variant = "dark",
-  className,
-}: {
-  size?: number;
-  variant?: "dark" | "light";
-  className?: string;
-}) {
-  const textColor = variant === "dark" ? "text-offwhite" : "text-brand-black";
-  return (
-    <div className={`flex items-center gap-3 ${className ?? ""}`}>
-      <LogoMark size={size} />
-      <div className="leading-tight">
-        <div className={`font-heading text-sm ${textColor}`}>ACHILLEUS</div>
-        <div className={`font-heading text-sm ${textColor} -mt-1`}>SECURITY</div>
-      </div>
-    </div>
-  );
-}
-
 export function Tagline({ className }: { className?: string }) {
   return (
     <p className={cn("font-script text-brand-red text-lg italic", className)}>
