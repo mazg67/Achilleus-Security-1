@@ -15,6 +15,7 @@ function readGuestFields(formData: FormData) {
     phone: String(formData.get("phone") || "").trim() || null,
     dietary: String(formData.get("dietary") || "None").trim() || "None",
     notes: String(formData.get("notes") || "").trim() || null,
+    security_pin: String(formData.get("security_pin") || "").trim() || null,
   };
 }
 

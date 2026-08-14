@@ -31,13 +31,22 @@ export function ReportHeader({ fixture, title }: { fixture: Fixture; title: stri
   );
 }
 
-export function ReportFooter({ generatedAt }: { generatedAt: Date }) {
+export function ReportFooter({
+  generatedAt,
+  contactNote,
+}: {
+  generatedAt: Date;
+  contactNote?: string;
+}) {
   return (
-    <div className="mt-8 pt-3 border-t border-border flex items-center justify-between text-xs">
-      <span className="font-script text-brand-red text-base">We Go Further To Protect You!</span>
-      <span className="text-muted-foreground">
-        Achilleus Security Management Limited · Generated {formatDateTimeStamp(generatedAt)}
-      </span>
+    <div className="mt-8 pt-3 border-t border-border text-xs">
+      {contactNote && <p className="font-semibold text-center mb-3">{contactNote}</p>}
+      <div className="flex items-center justify-between">
+        <span className="font-script text-brand-red text-base">We Go Further To Protect You!</span>
+        <span className="text-muted-foreground">
+          Achilleus Security Management Limited · Generated {formatDateTimeStamp(generatedAt)}
+        </span>
+      </div>
     </div>
   );
 }

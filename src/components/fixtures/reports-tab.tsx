@@ -13,7 +13,7 @@ function ReportCard({
   title: string;
   description: string;
   fixtureId: string;
-  reportType: "guest-list" | "catering-brief";
+  reportType: "guest-list" | "catering-brief" | "security-list";
 }) {
   return (
     <Card className="p-5 space-y-3">
@@ -57,6 +57,12 @@ export function ReportsTab({ detail }: { detail: FixtureDetail }) {
         description="Summary, dietary requirements, menu, and full arrival times for the venue's catering team."
         fixtureId={detail.fixture.id}
         reportType="catering-brief"
+      />
+      <ReportCard
+        title="Hospitality Security List"
+        description="Seat-by-seat list with each guest's security PIN, for venue security to verify identity on match day."
+        fixtureId={detail.fixture.id}
+        reportType="security-list"
       />
     </div>
   );

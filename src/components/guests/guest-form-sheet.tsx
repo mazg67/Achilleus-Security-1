@@ -1,8 +1,9 @@
 "use client";
 
-import { useActionState, useEffect } from "react";
+import { useActionState, useEffect, useState } from "react";
 import { useFormStatus } from "react-dom";
 import { toast } from "sonner";
+import { RefreshCw } from "lucide-react";
 import {
   Sheet,
   SheetContent,
@@ -24,6 +25,36 @@ function SubmitButton({ label }: { label: string }) {
     <Button type="submit" disabled={pending} className="bg-brand-red hover:bg-brand-red/90 text-white">
       {pending ? "Saving…" : label}
     </Button>
+  );
+}
+
+function PinField({ defaultValue }: { defaultValue: string }) {
+  const [pin, setPin] = useState(defaultValue);
+  return (
+    <div className="space-y-1.5">
+      <Label htmlFor="g-pin">Security PIN</Label>
+      <div className="flex gap-2">
+        <Input
+          id="g-pin"
+          name="security_pin"
+          value={pin}
+          onChange={(e) => setPin(e.target.value)}
+          placeholder="e.g. 4821"
+        />
+        <Button
+          type="button"
+          variant="outline"
+          size="icon"
+          title="Generate random PIN"
+          onClick={() => setPin(String(Math.floor(1000 + Math.random() * 9000)))}
+        >
+          <RefreshCw className="size-4" />
+        </Button>
+      </div>
+      <p className="text-xs text-muted-foreground">
+        Shown on the Hospitality Security List to verify this guest&rsquo;s identity on match day.
+      </p>
+    </div>
   );
 }
 
@@ -82,6 +113,7 @@ export function GuestFormSheet({
             <Label htmlFor="g-dietary">Dietary requirement</Label>
             <Input id="g-dietary" name="dietary" placeholder="None" defaultValue={guest?.dietary ?? "None"} />
           </div>
+          <PinField defaultValue={guest?.security_pin ?? ""} />
           <div className="space-y-1.5">
             <Label htmlFor="g-notes">Notes</Label>
             <Textarea id="g-notes" name="notes" rows={3} defaultValue={guest?.notes ?? ""} />

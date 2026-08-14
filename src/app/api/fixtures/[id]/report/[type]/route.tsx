@@ -6,6 +6,7 @@ import { getCurrentUser } from "@/lib/dal";
 import { getFixtureDetail } from "@/lib/queries/fixture-detail";
 import { GuestListDocument } from "@/lib/pdf/GuestListDocument";
 import { CateringBriefDocument } from "@/lib/pdf/CateringBriefDocument";
+import { SecurityListDocument } from "@/lib/pdf/SecurityListDocument";
 
 export async function GET(
   req: NextRequest,
@@ -24,6 +25,8 @@ export async function GET(
       <CateringBriefDocument detail={detail} generatedAt={generatedAt} origin={origin} />
     ) : type === "guest-list" ? (
       <GuestListDocument detail={detail} generatedAt={generatedAt} origin={origin} />
+    ) : type === "security-list" ? (
+      <SecurityListDocument detail={detail} generatedAt={generatedAt} origin={origin} />
     ) : null;
 
   if (!doc) return new NextResponse("Unknown report type", { status: 404 });

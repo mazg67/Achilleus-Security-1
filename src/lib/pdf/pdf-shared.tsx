@@ -65,19 +65,15 @@ export const sharedStyles = StyleSheet.create({
   },
   tableRowAlt: { backgroundColor: "#faf9f6" },
   tableCell: { fontSize: 9.5 },
-  footer: {
-    position: "absolute",
-    bottom: 20,
-    left: 36,
-    right: 36,
-    borderTopWidth: 1,
-    borderTopColor: "#ddd",
-    paddingTop: 8,
-    flexDirection: "row",
-    justifyContent: "space-between",
-  },
   footerTagline: { fontFamily: "Times-Italic", fontSize: 9, color: colours.red },
   footerMeta: { fontSize: 8, color: "#666" },
+  footerNote: {
+    fontFamily: "Helvetica-Bold",
+    fontSize: 9,
+    color: colours.black,
+    marginBottom: 6,
+    textAlign: "center",
+  },
 });
 
 export function PdfHeader({
@@ -107,13 +103,30 @@ export function PdfHeader({
   );
 }
 
-export function PdfFooter({ generatedAt }: { generatedAt: Date }) {
+export function PdfFooter({
+  generatedAt,
+  contactNote,
+}: {
+  generatedAt: Date;
+  contactNote?: string;
+}) {
   return (
-    <View style={sharedStyles.footer} fixed>
-      <Text style={sharedStyles.footerTagline}>We Go Further To Protect You!</Text>
-      <Text style={sharedStyles.footerMeta}>
-        Achilleus Security Management Limited · Generated {formatDateTimeStamp(generatedAt)}
-      </Text>
+    <View style={{ position: "absolute", bottom: 20, left: 36, right: 36 }} fixed>
+      {contactNote && <Text style={sharedStyles.footerNote}>{contactNote}</Text>}
+      <View
+        style={{
+          borderTopWidth: 1,
+          borderTopColor: "#ddd",
+          paddingTop: 8,
+          flexDirection: "row",
+          justifyContent: "space-between",
+        }}
+      >
+        <Text style={sharedStyles.footerTagline}>We Go Further To Protect You!</Text>
+        <Text style={sharedStyles.footerMeta}>
+          Achilleus Security Management Limited · Generated {formatDateTimeStamp(generatedAt)}
+        </Text>
+      </View>
     </View>
   );
 }

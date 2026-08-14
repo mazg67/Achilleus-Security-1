@@ -32,6 +32,7 @@ export interface Database {
           phone: string | null;
           dietary: string;
           notes: string | null;
+          security_pin: string | null;
           created_by: string | null;
           created_at: string;
           updated_at: string;
@@ -44,6 +45,7 @@ export interface Database {
           phone?: string | null;
           dietary?: string;
           notes?: string | null;
+          security_pin?: string | null;
           created_by?: string | null;
           created_at?: string;
           updated_at?: string;
